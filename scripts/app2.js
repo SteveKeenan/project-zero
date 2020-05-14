@@ -37,26 +37,46 @@ console.log(playingDeck.cards); //logs the newly created deck of cards (playingD
 // Game Play
 
     // Establish Players
-    const player = 
-    const cpu = 
+    // const player = 
+    // const cpu = 
+let bet = 0;
+let chips = 1000;
 
-class Players{
-    constructor (name, deck){
-        this.name = name;
-        this.deck = deck;
-        this.hand = [];
-        this.chips = 1000;
-        this.bet = 0;
-    }
-    bet(){
-        
-    }
+const betFive = $('#fiveDollar').on('click', function(event){
+    this.bet+=5;
+    this.chips-=5;
+    console.log(this.bet);
+    console.log(this.chips);
+})
+
+const betTen = $('#tenDollar').on('click', function(event){
+    this.bet+=10;
+    this.chips-=10;
+    console.log(this.bet);
+    console.log(this.chips);
+            })
+
+const betTwentyFive = $('#twentyFiveDollar').on('click', function(event){
+                this.bet+=25;
+                this.chips-=25;
+                console.log(this.bet);
+                console.log(this.chips);
+            })
+
+let playerHand = [];
+let cpuHand = [];
+
+const drawCards = $('#placeBet').on('click', function(event){
+    while(playerHand.lenght && cpuHand.lenght < 2) {
+        playingDeck.draw().push(playerHand);
+        playingDeck.draw().push(cpuHand);
+        console.log(playerHand);
+        console.log(cpuHand);
 }
+});
 
+const winningHand = function(){
+for (let i=0; i < playerHand.length; i++){
 
-
-
-    // Place Bets
-    // 
-
-// UI
+}
+}
