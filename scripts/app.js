@@ -36,8 +36,6 @@ class Deck {
 
 }
 
-
-
 const playingDeck = new (Deck); //creates a new deck based on the created class
 console.log(playingDeck.cards); //logs the newly created deck of cards (playingDeck) and the cards array
 
@@ -49,14 +47,9 @@ class Card {
 }
 // Game
 
-class Game {
-    constructor(player, cpu, deck){
-       this.player = player;
-       this.cpu = cpu;
-       this.deck = deck;
-    }
+class Start {
 
-    start (){
+    startGame (){
         // prompt for players name
         // bring up 'place bet' button
         let playerName = prompt("Please Enter Your Name", "Jack Black");
@@ -65,35 +58,90 @@ class Game {
         
         return playerName;
     }
+}
 
-        betting(){
-        // player is prompted to bet between $2 and $250.
-            let placeYourBet = prompt("Place a bet between $2 and $250");
+class Play {
+    constructor(player, cpu, deck){
+    this.player = player;
+    this.cpu = cpu;
+    this.deck = deck;
+    this.chips = chips;
+    this.bet = bet;
+}
+
+
+    betting(){
+        // button $5
+        const $fiveDollar = $('<button id=fiveDollar></button>');
+        $fiveDollar.on('click', function(event){
+            //add 5 to players bet
+        })
+        // button $10
+        const $tenDollar = $('<button id=tenDollar></button>');
+        $tenDollar.on('click', function(event){
+            // add 10 to players bet
+        })
+        // button $25
+        const $twentyFiveDollar = $('<button id=twentyFiveDollar></button>');
+        $twentyFiveDollar.on('click', function(event){
+            // add 25 to player bet
+        })
+
+        // button Place Bet
+        const $placeBet = $('<button id=placeBet></button>');
+        $placeBet.on('click', function(event){
+            // if (player.bet === >= 5 && <= 100) {
+                // place bet} else{
+                //     "Please place bet between $5 and $100"
+                // }
+
+            // place bet and start hand
+        })
+        
+          console.log("start betting worked");
+        
 
         }
 
-        dealCards(){
-
-        }
-    
-        playHand(){
-
-        }
-
-        winnerDecided(){
-        // 
-        }
-
-        discard(){
-
-        }
-
+    playHand(){
+        this.player.draw();
+        this.cpu.draw();
+        this.cardSuit
     }
 
-    const game = new (Game);
+
+    compareHands(){
+        
+    }
+
+}
+        
+
+    //     dealCards(){
+
+    //     }
+    
+
+
+    //     winnerDecided(){
+    //     // 
+    //     }
+
+    //     discard(){
+
+    //     }
+
+    // }
+
+    const start = new (Start);
     $('#startButton').on("click", function(event){
-        game.start();
+        start.startGame();
     })
+    $('#startButton').on("click", function(event){
+        $(this).hide(playGame);
+    });
+
+    const playGame = new (Play);
 
 
 

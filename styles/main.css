@@ -13,7 +13,21 @@ body{
     background-color: rgb(56, 114, 61); /* Test to make sure CSS file is connected*/
 }
 
+#startButton{
+    font-size: 26px;
+    padding: 10px;
+    border-radius: 10px;
+}
 
+.chips{
+    font-size: 26px;
+    text-align: center;
+    margin: 20px;
+    padding: 50px;
+    border-radius: 50%;
+    display: inline-block;
+
+}
 /* Yellow square for betting area. Bet amount will show up here */
 
 /* Dealer chip tray - if I get this far */
