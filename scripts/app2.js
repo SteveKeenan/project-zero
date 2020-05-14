@@ -42,11 +42,11 @@ console.log(playingDeck.cards); //logs the newly created deck of cards (playingD
 let bet = 0;
 let chips = 1000;
 
-const betFive = $('#fiveDollar').on('click', function(event){
-    this.bet+=5;
-    this.chips-=5;
-    console.log(this.bet);
-    console.log(this.chips);
+$('#fiveDollar').on('click', function(event){
+    bet+=5;
+    chips-=5;
+    console.log(bet);
+    console.log(chips);
 })
 
 const betTen = $('#tenDollar').on('click', function(event){
@@ -66,10 +66,10 @@ const betTwentyFive = $('#twentyFiveDollar').on('click', function(event){
 let playerHand = [];
 let cpuHand = [];
 
-const drawCards = $('#placeBet').on('click', function(event){
-    while(playerHand.lenght && cpuHand.lenght < 2) {
-        playingDeck.draw().push(playerHand);
-        playingDeck.draw().push(cpuHand);
+$('#placeBet').on('click', function(event){
+    while(playerHand.length < 2 && cpuHand.length < 2) {
+        playerHand.push(playingDeck.draw());
+        cpuHand.push(playingDeck.draw());
         console.log(playerHand);
         console.log(cpuHand);
 }
@@ -77,6 +77,13 @@ const drawCards = $('#placeBet').on('click', function(event){
 
 const winningHand = function(){
 for (let i=0; i < playerHand.length; i++){
+// parseInt()
+// sum hand
+// if hand > 21 bust
+// Ace = 11 or 1
+    // if hand = >21 Ace = 1
+    // if hand <= 21 Ace = 11
+// if playerHand > cpuHand, player wins
 
 }
 }
