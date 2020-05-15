@@ -47,21 +47,21 @@ $('#fiveDollar').on('click', function(event){
     chips-=5;
     console.log(bet);
     console.log(chips);
-})
+    })
 
-const betTen = $('#tenDollar').on('click', function(event){
-    this.bet+=10;
-    this.chips-=10;
-    console.log(this.bet);
-    console.log(this.chips);
-            })
+$('#tenDollar').on('click', function(event){
+    bet+=10;
+    chips-=10;
+    console.log(bet);
+    console.log(chips);
+    })
 
-const betTwentyFive = $('#twentyFiveDollar').on('click', function(event){
-                this.bet+=25;
-                this.chips-=25;
-                console.log(this.bet);
-                console.log(this.chips);
-            })
+$('#twentyFiveDollar').on('click', function(event){
+    bet+=25;
+    chips-=25;
+    console.log(bet);
+    console.log(chips);
+    })
 
 let playerHand = [];
 let cpuHand = [];
@@ -75,15 +75,55 @@ $('#placeBet').on('click', function(event){
 }
 });
 
-const winningHand = function(){
-for (let i=0; i < playerHand.length; i++){
-// parseInt()
-// sum hand
-// if hand > 21 bust
-// Ace = 11 or 1
-    // if hand = >21 Ace = 1
-    // if hand <= 21 Ace = 11
-// if playerHand > cpuHand, player wins
+let playerTotal = 0;
+let cpuTotal = 0;
 
-}
-}
+$('#hit').on('click', function(event){
+    playerHand.push(playingDeck.draw());
+    for(let i=0; i<playerHand.length; i++){
+        const card = playerHand[i];
+        console.log(card);
+        
+        if(isNaN(parseInt(card))){
+            playerTotal += 10;
+        } else {
+            playerTotal += parseInt(card);
+        }
+        console.log(playerTotal);
+    }
+    if(playerTotal > 21){
+        console.log("Bust");
+        bet = 0;
+    }
+})
+
+$('#stay').on('click', function(event){
+    for(let i=0; i<cpuHand.length; i++){
+        const card = cpuHand[i];
+        console.log(card);
+        console.log(parseInt(card));
+        
+        if(isNaN(parseInt(card))){
+            cpuTotal += 10;
+        }else if(parseInt(card) === Number){
+            cpuTotal += parseInt(card);
+        } else if (cpuTotal <17) {
+            cpuHand.push(playingDeck.draw());
+        }else if(cpuTotal > 21){
+            playerTotal += bet;
+        }else if(playerTotal > cpuTotal){
+            playerTotal += bet;
+        } else if(playerTotal < cpuTotal){
+            bet = 0;
+        }else{
+            while(playerHand || cpuHand >0){
+                cardsPlayed.push(playerHand);
+                cardsPlayed.push(cpuHand);
+        }
+            console.log('Push');
+    }
+        }
+        
+});
+
+
