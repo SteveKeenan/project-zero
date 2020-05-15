@@ -35,16 +35,20 @@ class Deck {
 const playingDeck = new (Deck); //creates a new deck based on the created class
 console.log(playingDeck.cards); //logs the newly created deck of cards (playingDeck) and the cards array
 // Game Play
+const $betting = $('#bet');
+const $myMoney = $('#chips');
 
-    // Establish Players
-    // const player = 
-    // const cpu = 
+
 let bet = 0;
+$betting.text(bet);
 let chips = 1000;
+$myMoney.text(chips);
 
 $('#fiveDollar').on('click', function(event){
     bet+=5;
     chips-=5;
+    $betting.text(bet);
+    $myMoney.text(chips);
     console.log(bet);
     console.log(chips);
     })
@@ -52,6 +56,8 @@ $('#fiveDollar').on('click', function(event){
 $('#tenDollar').on('click', function(event){
     bet+=10;
     chips-=10;
+    $betting.text(bet);
+    $myMoney.text(chips);
     console.log(bet);
     console.log(chips);
     })
@@ -59,6 +65,8 @@ $('#tenDollar').on('click', function(event){
 $('#twentyFiveDollar').on('click', function(event){
     bet+=25;
     chips-=25;
+    $betting.text(bet);
+    $myMoney.text(chips);
     console.log(bet);
     console.log(chips);
     })
