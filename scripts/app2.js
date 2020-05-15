@@ -26,9 +26,9 @@ class Deck {
         }
     }
     draw(){
-        this.shuffle(); //second shuffle to increase randomization
+        this.shuffle(); 
         return this.cards.shift();
-    } //this is working in console
+    } 
 
 }
 
@@ -37,6 +37,8 @@ console.log(playingDeck.cards); //logs the newly created deck of cards (playingD
 // Game Play
 const $betting = $('#bet');
 const $myMoney = $('#chips');
+const $myHand = $('#playerHand');
+const $computerHand = $('#cpuHand');
 
 
 let bet = 0;
@@ -49,8 +51,6 @@ $('#fiveDollar').on('click', function(event){
     chips-=5;
     $betting.text(bet);
     $myMoney.text(chips);
-    console.log(bet);
-    console.log(chips);
     })
 
 $('#tenDollar').on('click', function(event){
@@ -58,8 +58,6 @@ $('#tenDollar').on('click', function(event){
     chips-=10;
     $betting.text(bet);
     $myMoney.text(chips);
-    console.log(bet);
-    console.log(chips);
     })
 
 $('#twentyFiveDollar').on('click', function(event){
@@ -67,8 +65,6 @@ $('#twentyFiveDollar').on('click', function(event){
     chips-=25;
     $betting.text(bet);
     $myMoney.text(chips);
-    console.log(bet);
-    console.log(chips);
     })
 
 let playerHand = [];
@@ -78,8 +74,10 @@ $('#placeBet').on('click', function(event){
     while(playerHand.length < 2 && cpuHand.length < 2) {
         playerHand.push(playingDeck.draw());
         cpuHand.push(playingDeck.draw());
-        console.log(playerHand);
-        console.log(cpuHand);
+        $myHand.text(playerHand);
+        $computerHand.text(cpuHand);
+        console.log("Player Hand" + playerHand);
+        console.log("CPU Hand" + cpuHand);
 }
 });
 
@@ -90,17 +88,18 @@ $('#hit').on('click', function(event){
     playerHand.push(playingDeck.draw());
     for(let i=0; i<playerHand.length; i++){
         const card = playerHand[i];
-        console.log(card);
+        console.log("player additional card" +card);
         
         if(isNaN(parseInt(card))){
             playerTotal += 10;
         } else {
             playerTotal += parseInt(card);
         }
-        console.log(playerTotal);
+        console.log("Player Hand Total" + playerTotal);
+        $myHand.text(playerHand);
     }
     if(playerTotal > 21){
-        console.log("Bust");
+        console.log("Player Bust");
         bet = 0;
     }
 })
@@ -108,15 +107,13 @@ $('#hit').on('click', function(event){
 $('#stay').on('click', function(event){
     for(let i=0; i<cpuHand.length; i++){
         const card = cpuHand[i];
-        console.log(card);
-        console.log(parseInt(card));
-        
         if(isNaN(parseInt(card))){
             cpuTotal += 10;
         }else if(parseInt(card) === Number){
             cpuTotal += parseInt(card);
         } else if (cpuTotal <17) {
             cpuHand.push(playingDeck.draw());
+            $computerHand.text(cpuHand);
         }else if(cpuTotal > 21){
             playerTotal += bet;
         }else if(playerTotal > cpuTotal){
@@ -124,14 +121,16 @@ $('#stay').on('click', function(event){
         } else if(playerTotal < cpuTotal){
             bet = 0;
         }else{
-            while(playerHand || cpuHand >0){
-                cardsPlayed.push(playerHand);
-                cardsPlayed.push(cpuHand);
+            console.log("Push");
         }
-            console.log('Push');
-    }
-        }
-        
+    }     
 });
 
-
+$('nextHand').on('click', function(event){
+    while(playerHand.length > 0 || cpuHand.length >0){
+        cardsPlayed.push(playerHand);
+        cardsPlayed.push(cpuHand);
+        $myHand.text(playerHand);
+        $computerHand.text(cpuHand);
+    }
+});

@@ -10,7 +10,7 @@ body{
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: rgb(56, 114, 61); /* Test to make sure CSS file is connected*/
+    background-color: rgb(56, 114, 61); 
 }
 
 #startButton{
@@ -32,4 +32,21 @@ body{
 
 /* Dealer chip tray - if I get this far */
 
+#cpuHand{
+    position: absolute;
+    top: 50px;
+    border: 2px solid yellow;
+    margin: 0 auto;
+    width: 200px;
+    line-height: normal;
+    text-align: center;
+}
 
+#playerHand{
+    position: absolute;
+    bottom: 50px;
+    border: 2px solid yellow;
+    margin: 0 auto;
+    width: 200px;
+    text-align: center;
+}
