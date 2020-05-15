@@ -33,8 +33,7 @@ class Deck {
 }
 
 const playingDeck = new (Deck); //creates a new deck based on the created class
-console.log(playingDeck.cards); //logs the newly created deck of cards (playingDeck) and the cards array
-// Game Play
+
 const $betting = $('#bet');
 const $myMoney = $('#chips');
 const $myHand = $('#playerHand');
@@ -97,10 +96,14 @@ $('#hit').on('click', function(event){
         }
         console.log("Player Hand Total" + playerTotal);
         $myHand.text(playerHand);
+        $betting.text(bet);
+        $myMoney.text(chips);
     }
     if(playerTotal > 21){
         console.log("Player Bust");
         bet = 0;
+        $betting.text(bet);
+        $myMoney.text(chips);
     }
 })
 
@@ -126,11 +129,13 @@ $('#stay').on('click', function(event){
     }     
 });
 
-$('nextHand').on('click', function(event){
-    while(playerHand.length > 0 || cpuHand.length >0){
-        cardsPlayed.push(playerHand);
-        cardsPlayed.push(cpuHand);
-        $myHand.text(playerHand);
-        $computerHand.text(cpuHand);
-    }
-});
+// $('#nextHand').on('click', function(event){
+//     while(playerHand.length > 0 && cpuHand.length >0){
+//         playingDeck.cardsPlayed.push(playerHand);
+//         playingDeck.cardsPlayed.push(cpuHand);
+//         $myHand.text(playerHand);
+//         $computerHand.text(cpuHand);
+//         $betting.text(bet);
+//         $myMoney.text(chips);
+//     }
+// });
